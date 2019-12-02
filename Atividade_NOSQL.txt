@@ -1,0 +1,112 @@
+--Comandos utilizando o shell do banco de dados NoSQL Hbase--
+/usr/bin/hive : Comando usado para iniciar a interface da linha de comandos do Hive;
+
+Create: Comando utilizado para criar novas tabelas.
+Exemplo: create 'nome_tabela', 'campo_1', 'campo_2';
+
+Put: Utilizando para inserir dados em uma tabela.
+Exemplo: put 'nome_tabela','Linha1','colfamily:colname','valor';
+
+Scan: Usado para visualizar todos os dados de uma tabela dentro do Hbase.
+Exemplo: scan 'nome_tabela';
+
+Get:  Utilizado para buscar o conteúdo de uma linha específica.
+Exemplo: get 'nome_tabela', 'coluna', '1';
+
+Delete: Comando usado para excluir os dados de uma tabela seja uma célula individual ou todas as linhas de uma tabela.
+Exemplo: deleteall 'nome_tabela', 'linha';
+
+Disable: comando utilizado para desativar uma tabela, não permitindo que aconteça nenhuma alteração ou consulta na tabela.
+Exemplo: disable 'nome_tabela';
+
+Drop: Comando utilizado para eliminar permanentemente uma tabela.
+Exemplo: drop 'nome_da_tabela';
+
+quit: Comando usado para sair do shell do Hive;
+
+------Comandos utilizando o hive----
+
+Create external table: A tabela externa nos permite criar e acessar uma tabela e dados externamente. Como a tabela é externa, 
+os dados não estão presentes no diretório Hive. Portanto, se tentarmos excluir a tabela, os metadados da tabela serão deletados,
+mas os dados ainda existirão.
+Exemplo: CREATE EXTERNAL TABLE nome_tabela ( campos)
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ','
+LOCATION '/ local_HDFS_para_armazenamento/';
+
+Select: Comando utilizado para consultar tabelas.
+Exemplo: select from nome_tabela;
+
+Order by: comando utilizado para ordenar uma consulta por um determinado campo de uma tabela.
+Exemplo: select campo_1, campo_2 from nome_tabela.
+SELECT campo_1, campo_2 FROM nome_tabela ORDER BY campo_1;
+
+IF: Comando responsável por testar uma expressão e retornar um resultado correspondente, dependendo se o resultado é verdadeiro, falso ou nulo.
+Exemplo: selecione IF (1 = 1, 'TRUE', 'FALSE') from nome_tabela;
+
+------Comandos utilizando o Spark----
+
+csv.printSchema() : Comando utilizado para carregar um arquivo de texto em um DataFrame e exibir o esquema.
+
+csv.show(truncate = False) : Código utilizado para exibir o conteúdo de um DataFrame.
+
+building_csv.printSchema() : Comando utilizado para usar o método spark.read.csv para inserir automaticamente o esquema a partir da linha de cabeçalho dos
+nomes das colunas e dos dados que o arquivo contém.
+
+building_csv.show() : Comando para visualizar a saída retornada, que detalha o esquema do DataFrame.
+
+------Comandos utilizando o Hadoop HDFS----
+
+hdfs dfs -ls /data: Comando utilizado para listar os arquivos dentro de uma pasta no HDFS.
+
+ls /usr/hdp: Comando utilizado para apontar o diretório onde seus aplicativos Hadoop estão armazenados.
+
+hdfs dfs -cat /wordcount_output/part-00000: Comando utilizado para mostrar o conteúdo de um arquivo.
+
+hdfs dfs -rm -r /wordcount_output: Comando para deletar um diretório do HDFS.
+
+hdfs dfs -mkdir /stream : Comando utilizado para criar um diretório chamdo stream no armazenamento do blob dentro do cluster.
+
+hdfs dfs -put text1 /stream/text1_1: Comando usado para fazer upload de uma cópia do texto1 para a pasta de fluxo.
+
+hdfs dfs -put devdata.txt /structstream/1: Comando para fazer upload de uma cópia do devdata.txt para a pasta structstream.
+
+
+SCALA SHELL
+
+spark-shell: Comando utilizado para iniciar o shell do Spark.
+
+val txt: sc.textFile("/example/data/gutenberg/outlineofscience.txt") = Comando utilizado para criar um RDD chamado txt a partir do arquivo de texto 
+sampleofscience.txt de amostra fornecido por padrão com todos os clusters do HDInsight.
+
+val filtTxt: txt.filter (txt => txt.contains ("science")): Comando usado para criar um novo RDD chamado filtTxt que filtra o txt RDD para que apenas as linhas
+que contenham a palavra "science" sejam incluídas.
+
+filtTxt.count(): Comando usado para contar o número de linhas no RDD filtTxt.
+
+filtTxt.collect(): Comando para exibir o conteúdo do filtTxt RDD.
+
+sudo apt-get install sbt: Comandos utilizados para adicionar chaves de repositório sbt e instalar o pacote.
+
+sbt –version : Comando utilizado para verificar a versão sbt e fazer o download das bibliotecas necessárias.
+
+clear : Comando utilizado para limpar o console.
+
+mkdir wordcount : Comando utilizado para criar uma nova pasta.
+
+cd wordcount : Comando utilizado para acessar a pasta.
+
+sbt compile : Comando usado para compilar o código fonte.
+
+sbt package : Comando usado para empacotar o arquivo em um arquivo .JAR
+
+spark-submit --master=yarn --class edx.course.WordCountApplication target/scala-2.11/word-count_2.11-1.0.jar : Comando usado para enviar o 
+aplicativo para o cluster.
+
+quit : Comando para sair do shell Scala.
+
+
+
+
+
+
